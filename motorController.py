@@ -128,19 +128,14 @@ while True:
             print("Dispensing Pill")
             watering = True
     if watering:
-        arduinoSerialData.write('y'.encode())
+        arduinoSerialData.write('y')
         sleep += 8
         water.ChangeDutyCycle(5)
-        # os.system('echo "turning usb ports off"')
-        # os.system('sudo /home/pi/hub-ctrl -h 0 -P 2 -p 0')
         time.sleep(6)
         water.ChangeDutyCycle(0)
-        # os.system('echo "turning usb ports on"')
-        # os.system('sudo /home/pi/hub-ctrl -h 0 -P 2 -p 1')
-        # os.system('pills.mp3')
+        os.system('pills.mp3')
     else:
-        arduinoSerialData.write('n'.encode())
+        arduinoSerialData.write('n')
 
     # This is dependent on how fast the machine is. For us it would generally take a second to run through the code
     time.sleep(60 - sleep)
-GPIO.cleanup()
