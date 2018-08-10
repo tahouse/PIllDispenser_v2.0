@@ -79,9 +79,7 @@ void loop() {
   } else if (user == "+") {
     strip.setBrightness(255);
   }
-  if (user == "1") {
-    rainbowCycle(50);
-  } else if (user == "2") {
+  if (user == "2") {
     colorWipe(strip.Color(255, 0, 0), 50); // Red
     colorWipe(strip.Color(0, 255, 0), 50); // Green
     colorWipe(strip.Color(0, 0, 255), 50); // Blue
@@ -105,6 +103,8 @@ void loop() {
     colorchange(75, 0, 130);
   } else if (user == "v") {
     colorchange(148, 0, 211);
+  } else {
+    rainbowCycle(50);
   }
 }
 
