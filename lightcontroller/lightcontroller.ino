@@ -42,6 +42,7 @@ void setup() {
 void loop() {
   // Initialize the input to ""
   String value = "";
+  String user = "";
   if (Serial2.available()) {
     user = Serial2.readString();
   }
@@ -50,6 +51,29 @@ void loop() {
     if (value == "y") {
       dispensed();
     }
+  }
+  if (user == "!") {
+    strip.setBrightness(0);
+  } else if (user == ",") {
+    strip.setBrightness(26);
+  } else if (user == "#") {
+    strip.setBrightness(52);
+  } else if (user == "$") {
+    strip.setBrightness(78);
+  } else if (user == "%") {
+    strip.setBrightness(104);
+  } else if (user == "&") {
+    strip.setBrightness(130);
+  } else if (user == "'") {
+    strip.setBrightness(156);
+  } else if (user == "(") {
+    strip.setBrightness(182);
+  } else if (user == ")") {
+    strip.setBrightness(208);
+  } else if (user == "*") {
+    strip.setBrightness(234);
+  } else if (user == "+") {
+    strip.setBrightness(255);
   }
   if (user == "1") {
     rainbowCycle(50);
@@ -61,8 +85,22 @@ void loop() {
     theaterChase(strip.Color(127, 127, 127), 50); // White
     theaterChase(strip.Color(127, 0, 0), 50); // Red
     theaterChase(strip.Color(0, 0, 127), 50); // Blue
-  } else {
+  } else if (user == "4") {
     theaterChaseRainbow(50);
+  } else if (user == "r") {
+    colorchange(255, 0, 0);
+  } else if (user == "o") {
+    colorchange(255, 127, 0);
+  } else if (user == "e") {
+    colorchange(255, 255, 0);
+  } else if (user == "g") {
+    colorchange(0, 255, 0);
+  } else if (user == "b") {
+    colorchange(0, 0, 255);
+  } else if (user == "i") {
+    colorchange(75, 0, 130);
+  } else if (user == "v") {
+    colorchange(148, 0, 211);
   }
 }
 
@@ -76,6 +114,12 @@ void dispensed() {
       strip.setPixelColor(i, 0, 0, 0);
     }
     delay(750);
+  }
+}
+
+void colorchange(int r, int g, int b) {
+  for (int i = 0; i < NUMPIXELS; i++) {
+    strip.setPixelColor(i, r, g, b)
   }
 }
 
