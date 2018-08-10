@@ -123,7 +123,7 @@ void dispensed() {
 
 void colorchange(int r, int g, int b) {
   for (int i = 0; i < NUMPIXELS; i++) {
-    strip.setPixelColor(i, r, g, b)
+    strip.setPixelColor(i, r, g, b);
   }
 }
 
