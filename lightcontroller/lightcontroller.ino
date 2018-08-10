@@ -3,9 +3,13 @@
 #include <avr/power.h>
 #endif
 
+#include <SoftwareSerial.h>
+
 #define PIN 8
 
 #define NUMPIXELS 16
+
+SoftwareSerial Bluetooth(10,9);
 
 // Parameter 1 = number of pixels in strip
 // Parameter 2 = Arduino pin number (most are valid)
@@ -27,7 +31,7 @@ String user = "";
 
 void setup() {
   Serial.begin(9600);
-  Serial2.begin(9600);
+  Bluetooth.begin(9600);
   // This is for Trinket 5V 16MHz, you can remove these three lines if you are not using a Trinket
 #if defined (__AVR_ATtiny85__)
   if (F_CPU == 16000000) clock_prescale_set(clock_div_1);
@@ -43,8 +47,8 @@ void loop() {
   // Initialize the input to ""
   String value = "";
   String user = "";
-  if (Serial2.available()) {
-    user = Serial2.readString();
+  if (Bluetooth.available()) {
+    user = Bluetooth.readString();
   }
   if (Serial.available()) {
     value = Serial.readString();
