@@ -49,6 +49,7 @@ void loop() {
   String user = "";
   if (Bluetooth.available()) {
     user = Bluetooth.readString();
+    Serial.println(user);
   }
   if (Serial.available()) {
     value = Serial.readString();
@@ -56,40 +57,41 @@ void loop() {
       dispensed();
     }
   }
-  if (user == "!") {
-    strip.setBrightness(0);
-  } else if (user == ",") {
-    strip.setBrightness(26);
-  } else if (user == "#") {
-    strip.setBrightness(52);
-  } else if (user == "$") {
-    strip.setBrightness(78);
-  } else if (user == "%") {
-    strip.setBrightness(104);
-  } else if (user == "&") {
-    strip.setBrightness(130);
-  } else if (user == "'") {
-    strip.setBrightness(156);
-  } else if (user == "(") {
-    strip.setBrightness(182);
-  } else if (user == ")") {
-    strip.setBrightness(208);
-  } else if (user == "*") {
-    strip.setBrightness(234);
-  } else if (user == "+") {
-    strip.setBrightness(255);
-  }
-  if (user == "2") {
-    colorWipe(strip.Color(255, 0, 0), 50); // Red
-    colorWipe(strip.Color(0, 255, 0), 50); // Green
-    colorWipe(strip.Color(0, 0, 255), 50); // Blue
-  } else if (user == "3") {
-    theaterChase(strip.Color(127, 127, 127), 50); // White
-    theaterChase(strip.Color(127, 0, 0), 50); // Red
-    theaterChase(strip.Color(0, 0, 127), 50); // Blue
-  } else if (user == "4") {
-    theaterChaseRainbow(50);
-  } else if (user == "r") {
+//  if (user == "!") {
+//    strip.setBrightness(0);
+//  } else if (user == ",") {
+//    strip.setBrightness(26);
+//  } else if (user == "#") {
+//    strip.setBrightness(52);
+//  } else if (user == "$") {
+//    strip.setBrightness(78);
+//  } else if (user == "%") {
+//    strip.setBrightness(104);
+//  } else if (user == "&") {
+//    strip.setBrightness(130);
+//  } else if (user == "'") {
+//    strip.setBrightness(156);
+//  } else if (user == "(") {
+//    strip.setBrightness(182);
+//  } else if (user == ")") {
+//    strip.setBrightness(208);
+//  } else if (user == "*") {
+//    strip.setBrightness(234);
+//  } else if (user == "+") {
+//    strip.setBrightness(255);
+//  }
+//  if (user == "2") {
+//    colorWipe(strip.Color(255, 0, 0), 50); // Red
+//    colorWipe(strip.Color(0, 255, 0), 50); // Green
+//    colorWipe(strip.Color(0, 0, 255), 50); // Blue
+//  } else if (user == "3") {
+//    theaterChase(strip.Color(127, 127, 127), 50); // White
+//    theaterChase(strip.Color(127, 0, 0), 50); // Red
+//    theaterChase(strip.Color(0, 0, 127), 50); // Blue
+//  } else if (user == "4") {
+//    theaterChaseRainbow(50);
+//  } 
+  if (user == "r") {
     colorchange(255, 0, 0);
   } else if (user == "o") {
     colorchange(255, 127, 0);
@@ -103,9 +105,10 @@ void loop() {
     colorchange(75, 0, 130);
   } else if (user == "v") {
     colorchange(148, 0, 211);
-  } else {
-    rainbowCycle(50);
   }
+//  } else {
+//    rainbowCycle(50);
+//  }
 }
 
 void dispensed() {
