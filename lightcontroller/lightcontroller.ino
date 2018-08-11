@@ -46,7 +46,7 @@ void setup() {
 void loop() {
   // Initialize the input to ""
   String value = "";
-  char user = '';
+  char user = 'n';
   if (Bluetooth.available()) {
     user = Bluetooth.read();
     Serial.println(user);
@@ -113,11 +113,11 @@ void loop() {
 
 void dispensed() {
   for (int j = 0; j < 15; j++) {
-    for (int i = 0; i < NUMPIXELS; i++) {
+    for (int i = 0; i < 16; i++) {
       strip.setPixelColor(i, 255, 0, 0);
     }
     delay(750);
-    for (int i = 0; i < NUMPIXELS; i++) {
+    for (int i = 0; i < 16; i++) {
       strip.setPixelColor(i, 0, 0, 0);
     }
     delay(750);
@@ -125,7 +125,7 @@ void dispensed() {
 }
 
 void colorchange(int r, int g, int b) {
-  for (int i = 0; i < NUMPIXELS; i++) {
+  for (int i = 0; i < 16; i++) {
     strip.setPixelColor(i, r, g, b);
   }
 }
