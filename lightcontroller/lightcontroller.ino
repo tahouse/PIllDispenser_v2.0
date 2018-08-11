@@ -46,9 +46,9 @@ void setup() {
 void loop() {
   // Initialize the input to ""
   String value = "";
-  String user = "";
+  char user = '';
   if (Bluetooth.available()) {
-    user = Bluetooth.readString();
+    user = Bluetooth.read();
     Serial.println(user);
   }
   if (Serial.available()) {
@@ -91,19 +91,19 @@ void loop() {
 //  } else if (user == "4") {
 //    theaterChaseRainbow(50);
 //  } 
-  if (user == "r") {
+  if (user == 'r') {
     colorchange(255, 0, 0);
-  } else if (user == "o") {
+  } else if (user == 'o') {
     colorchange(255, 127, 0);
-  } else if (user == "e") {
+  } else if (user == 'e') {
     colorchange(255, 255, 0);
-  } else if (user == "g") {
+  } else if (user == 'g') {
     colorchange(0, 255, 0);
-  } else if (user == "b") {
+  } else if (user == 'b') {
     colorchange(0, 0, 255);
-  } else if (user == "i") {
+  } else if (user == 'i') {
     colorchange(75, 0, 130);
-  } else if (user == "v") {
+  } else if (user == 'v') {
     colorchange(148, 0, 211);
   }
 //  } else {
