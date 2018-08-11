@@ -128,6 +128,7 @@ void colorchange(int r, int g, int b) {
   for (int i = 0; i < 16; i++) {
     strip.setPixelColor(i, r, g, b);
   }
+  strip.show();
 }
 
 // Fill the dots one after the other with a color
