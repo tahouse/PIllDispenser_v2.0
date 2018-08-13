@@ -26,8 +26,6 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
 // and minimize distance between Arduino and first pixel.  Avoid connecting
 // on a live circuit...if you must, connect GND first.
 
-char user = 'n';
-
 void setup() {
   Serial.begin(9600);
   Bluetooth.begin(9600);
@@ -43,12 +41,14 @@ void setup() {
   rainbowCycle(50);
 }
 
-
+char user = 'n';
 void loop() {
   // Initialize the input to ""
+  user = 'n';
   String value = "";
   if (Bluetooth.available()) {
     user = Bluetooth.read();
+    Serial.println(user);
   }
   if (Serial.available()) {
     value = Serial.readString();
@@ -56,76 +56,107 @@ void loop() {
       dispensed();
     }
   }
-  if (user == "!") {
+  if (user == '!') {
     strip.setBrightness(0);
-  } else if (user == ",") {
+    strip.show();
+  }
+  if (user == ',') {
     strip.setBrightness(26);
-  } else if (user == "#") {
+    strip.show();
+  }
+  if (user == '#') {
     strip.setBrightness(52);
-  } else if (user == "$") {
+    strip.show();
+  }
+  if (user == '$') {
     strip.setBrightness(78);
-  } else if (user == "%") {
+    strip.show();
+  }
+  if (user == '%') {
     strip.setBrightness(104);
-  } else if (user == "&") {
+    strip.show();
+  }
+  if (user == '&') {
     strip.setBrightness(130);
-  } else if (user == "'") {
+    strip.show();
+  }
+  if (user == '/') {
     strip.setBrightness(156);
-  } else if (user == "(") {
+    strip.show();
+  }
+  if (user == '(') {
     strip.setBrightness(182);
-  } else if (user == ")") {
+    strip.show();
+  }
+  if (user == ')') {
     strip.setBrightness(208);
-  } else if (user == "*") {
+    strip.show();
+  }
+  if (user == '*') {
     strip.setBrightness(234);
-  } else if (user == "+") {
+    strip.show();
+  }
+  if (user == '+') {
     strip.setBrightness(255);
+    strip.show();
   }
   
   if (user == '1') {
     rainbowCycle(50);
-  } else if (user == '2') {
+  }
+  if (user == '2') {
     colorWipe(strip.Color(255, 0, 0), 50); // Red
     colorWipe(strip.Color(0, 255, 0), 50); // Green
     colorWipe(strip.Color(0, 0, 255), 50); // Blue
-  } else if (user == '3') {
+  }
+  if (user == '3') {
     theaterChase(strip.Color(127, 127, 127), 50); // White
     theaterChase(strip.Color(127, 0, 0), 50); // Red
     theaterChase(strip.Color(0, 0, 127), 50); // Blue
-  } else if (user == '4') {
+  }
+  if (user == '4') {
     theaterChaseRainbow(50);
-  } else if (user == 'r') {
+  }
+  if (user == 'r') {
     colorchange(255, 0, 0);
-  } else if (user == 'o') {
+  }
+  if (user == 'o') {
     colorchange(255, 127, 0);
-  } else if (user == 'e') {
+  }
+  if (user == 'e') {
     colorchange(255, 255, 0);
-  } else if (user == 'g') {
+  }
+  if (user == 'g') {
     colorchange(0, 255, 0);
-  } else if (user == 'b') {
+  }
+  if (user == 'b') {
     colorchange(0, 0, 255);
-  } else if (user == 'i') {
+  }
+  if (user == 'i') {
     colorchange(75, 0, 130);
-  } else if (user == 'v') {
+  }
+  if (user == 'v') {
     colorchange(148, 0, 211);
   }
 }
 
 void dispensed() {
-  for (int j = 0; j < 15; j++) {
-    for (int i = 0; i < NUMPIXELS; i++) {
+  for (int j = 0; j < 20; j++) {
+    for (int i = 0; i < 41; i++) {
       strip.setPixelColor(i, 255, 0, 0);
-      strip.show();
     }
-    delay(750);
-    for (int i = 0; i < NUMPIXELS; i++) {
+    strip.show();
+    delay(100);
+    for (int i = 0; i < 41; i++) {
       strip.setPixelColor(i, 0, 0, 0);
-      strip.show();
     }
-    delay(750);
+    strip.show();
+    delay(100);
   }
 }
 
 void colorchange(int r, int g, int b) {
-  for (int i = 0; i < NUMPIXELS; i++) {
+  for (int i = 0; i < 41; i++) {
     strip.setPixelColor(i, r, g, b);
   }
   strip.show();
@@ -137,7 +168,7 @@ void colorWipe(uint32_t c, uint8_t wait) {
     if (Bluetooth.available()) {
       user = Bluetooth.read();
     }
-    if user != '2' break;
+    if (user != '2') break;
     strip.setPixelColor(i, c);
     strip.show();
     delay(wait);
