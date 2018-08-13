@@ -7,7 +7,7 @@
 
 #define PIN 8
 
-#define NUMPIXELS 16
+#define NUMPIXELS 41
 
 SoftwareSerial Bluetooth(10,9);
 
@@ -26,8 +26,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
 // and minimize distance between Arduino and first pixel.  Avoid connecting
 // on a live circuit...if you must, connect GND first.
 
-// Global variable for the value of the string so it doesn't get set to blank everytime
-String user = "";
+char user = 'n';
 
 void setup() {
   Serial.begin(9600);
@@ -41,15 +40,15 @@ void setup() {
   strip.setBrightness(64);
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
+  rainbowCycle(50);
 }
+
 
 void loop() {
   // Initialize the input to ""
   String value = "";
-  char user = 'n';
   if (Bluetooth.available()) {
     user = Bluetooth.read();
-    Serial.println(user);
   }
   if (Serial.available()) {
     value = Serial.readString();
@@ -57,41 +56,43 @@ void loop() {
       dispensed();
     }
   }
-//  if (user == "!") {
-//    strip.setBrightness(0);
-//  } else if (user == ",") {
-//    strip.setBrightness(26);
-//  } else if (user == "#") {
-//    strip.setBrightness(52);
-//  } else if (user == "$") {
-//    strip.setBrightness(78);
-//  } else if (user == "%") {
-//    strip.setBrightness(104);
-//  } else if (user == "&") {
-//    strip.setBrightness(130);
-//  } else if (user == "'") {
-//    strip.setBrightness(156);
-//  } else if (user == "(") {
-//    strip.setBrightness(182);
-//  } else if (user == ")") {
-//    strip.setBrightness(208);
-//  } else if (user == "*") {
-//    strip.setBrightness(234);
-//  } else if (user == "+") {
-//    strip.setBrightness(255);
-//  }
-//  if (user == "2") {
-//    colorWipe(strip.Color(255, 0, 0), 50); // Red
-//    colorWipe(strip.Color(0, 255, 0), 50); // Green
-//    colorWipe(strip.Color(0, 0, 255), 50); // Blue
-//  } else if (user == "3") {
-//    theaterChase(strip.Color(127, 127, 127), 50); // White
-//    theaterChase(strip.Color(127, 0, 0), 50); // Red
-//    theaterChase(strip.Color(0, 0, 127), 50); // Blue
-//  } else if (user == "4") {
-//    theaterChaseRainbow(50);
-//  } 
-  if (user == 'r') {
+  if (user == "!") {
+    strip.setBrightness(0);
+  } else if (user == ",") {
+    strip.setBrightness(26);
+  } else if (user == "#") {
+    strip.setBrightness(52);
+  } else if (user == "$") {
+    strip.setBrightness(78);
+  } else if (user == "%") {
+    strip.setBrightness(104);
+  } else if (user == "&") {
+    strip.setBrightness(130);
+  } else if (user == "'") {
+    strip.setBrightness(156);
+  } else if (user == "(") {
+    strip.setBrightness(182);
+  } else if (user == ")") {
+    strip.setBrightness(208);
+  } else if (user == "*") {
+    strip.setBrightness(234);
+  } else if (user == "+") {
+    strip.setBrightness(255);
+  }
+  
+  if (user == '1') {
+    rainbowCycle(50);
+  } else if (user == '2') {
+    colorWipe(strip.Color(255, 0, 0), 50); // Red
+    colorWipe(strip.Color(0, 255, 0), 50); // Green
+    colorWipe(strip.Color(0, 0, 255), 50); // Blue
+  } else if (user == '3') {
+    theaterChase(strip.Color(127, 127, 127), 50); // White
+    theaterChase(strip.Color(127, 0, 0), 50); // Red
+    theaterChase(strip.Color(0, 0, 127), 50); // Blue
+  } else if (user == '4') {
+    theaterChaseRainbow(50);
+  } else if (user == 'r') {
     colorchange(255, 0, 0);
   } else if (user == 'o') {
     colorchange(255, 127, 0);
@@ -106,26 +107,25 @@ void loop() {
   } else if (user == 'v') {
     colorchange(148, 0, 211);
   }
-//  } else {
-//    rainbowCycle(50);
-//  }
 }
 
 void dispensed() {
   for (int j = 0; j < 15; j++) {
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < NUMPIXELS; i++) {
       strip.setPixelColor(i, 255, 0, 0);
+      strip.show();
     }
     delay(750);
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < NUMPIXELS; i++) {
       strip.setPixelColor(i, 0, 0, 0);
+      strip.show();
     }
     delay(750);
   }
 }
 
 void colorchange(int r, int g, int b) {
-  for (int i = 0; i < 16; i++) {
+  for (int i = 0; i < NUMPIXELS; i++) {
     strip.setPixelColor(i, r, g, b);
   }
   strip.show();
@@ -134,6 +134,10 @@ void colorchange(int r, int g, int b) {
 // Fill the dots one after the other with a color
 void colorWipe(uint32_t c, uint8_t wait) {
   for (uint16_t i = 0; i < strip.numPixels(); i++) {
+    if (Bluetooth.available()) {
+      user = Bluetooth.read();
+    }
+    if user != '2' break;
     strip.setPixelColor(i, c);
     strip.show();
     delay(wait);
@@ -158,8 +162,13 @@ void rainbowCycle(uint8_t wait) {
 
   for (j = 0; j < 256 * 5; j++) { // 5 cycles of all colors on wheel
     for (i = 0; i < strip.numPixels(); i++) {
+      if (Bluetooth.available()) {
+        user = Bluetooth.read();
+      }
+      if (user != '1') break;
       strip.setPixelColor(i, Wheel(((i * 256 / strip.numPixels()) + j) & 255));
     }
+    if (user != '1') break;
     strip.show();
     delay(wait);
   }
@@ -168,6 +177,10 @@ void rainbowCycle(uint8_t wait) {
 //Theatre-style crawling lights.
 void theaterChase(uint32_t c, uint8_t wait) {
   for (int j = 0; j < 10; j++) { //do 10 cycles of chasing
+      if (Bluetooth.available()) {
+        user = Bluetooth.read();
+      }
+      if (user != '3') break;
     for (int q = 0; q < 3; q++) {
       for (uint16_t i = 0; i < strip.numPixels(); i = i + 3) {
         strip.setPixelColor(i + q, c);  //turn every third pixel on
@@ -186,6 +199,10 @@ void theaterChase(uint32_t c, uint8_t wait) {
 //Theatre-style crawling lights with rainbow effect
 void theaterChaseRainbow(uint8_t wait) {
   for (int j = 0; j < 256; j++) {   // cycle all 256 colors in the wheel
+      if (Bluetooth.available()) {
+        user = Bluetooth.read();
+      }
+      if (user != '4') break;
     for (int q = 0; q < 3; q++) {
       for (uint16_t i = 0; i < strip.numPixels(); i = i + 3) {
         strip.setPixelColor(i + q, Wheel( (i + j) % 255)); //turn every third pixel on
