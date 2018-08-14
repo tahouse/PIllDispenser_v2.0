@@ -5,7 +5,7 @@
 
 #include <SoftwareSerial.h>
 
-#define NUMPIXELS 41
+#define NUMPIXELS 51
 #define PIN 8
 
 SoftwareSerial Bluetooth(10,9);
@@ -34,7 +34,7 @@ void setup() {
 #endif
   // End of trinket special code
 
-  strip.setBrightness(64);
+  strip.setBrightness(130);
   strip.begin();
   rainbowCycle(50);
   strip.show(); // Initialize all pixels to 'off'
@@ -105,14 +105,18 @@ void loop() {
     rainbowCycle(50);
   }
   if (user == '2') {
-    colorWipe(strip.Color(255, 0, 0), 50); // Red
-    colorWipe(strip.Color(0, 255, 0), 50); // Green
-    colorWipe(strip.Color(0, 0, 255), 50); // Blue
+    while(user == '2') {
+      colorWipe(strip.Color(255, 0, 0), 50); // Red
+      colorWipe(strip.Color(0, 255, 0), 50); // Green
+      colorWipe(strip.Color(0, 0, 255), 50); // Blue
+    }
   }
   if (user == '3') {
-    theaterChase(strip.Color(127, 127, 127), 50); // White
-    theaterChase(strip.Color(127, 0, 0), 50); // Red
-    theaterChase(strip.Color(0, 0, 127), 50); // Blue
+    while(user == '3') {
+      theaterChase(strip.Color(127, 127, 127), 50); // White
+      theaterChase(strip.Color(127, 0, 0), 50); // Red
+      theaterChase(strip.Color(0, 0, 127), 50); // Blue
+    }
   }
   if (user == '4') {
     theaterChaseRainbow(50);
@@ -142,12 +146,12 @@ void loop() {
 
 void dispensed() {
   for (int j = 0; j < 20; j++) {
-    for (int i = 0; i < 41; i++) {
+    for (int i = 0; i < strip.numPixels(); i++) {
       strip.setPixelColor(i, 255, 0, 0);
     }
     strip.show();
     delay(100);
-    for (int i = 0; i < 41; i++) {
+    for (int i = 0; i < strip.numPixels(); i++) {
       strip.setPixelColor(i, 0, 0, 0);
     }
     strip.show();
@@ -156,7 +160,7 @@ void dispensed() {
 }
 
 void colorchange(int r, int g, int b) {
-  for (int i = 0; i < 41; i++) {
+  for (int i = 0; i < strip.numPixels(); i++) {
     strip.setPixelColor(i, r, g, b);
   }
   strip.show();
