@@ -5,9 +5,8 @@
 
 #include <SoftwareSerial.h>
 
-#define PIN 8
-
 #define NUMPIXELS 41
+#define PIN 8
 
 SoftwareSerial Bluetooth(10,9);
 
@@ -37,11 +36,12 @@ void setup() {
 
   strip.setBrightness(64);
   strip.begin();
-  strip.show(); // Initialize all pixels to 'off'
   rainbowCycle(50);
+  strip.show(); // Initialize all pixels to 'off'
 }
 
 char user = 'n';
+
 void loop() {
   // Initialize the input to ""
   user = 'n';
