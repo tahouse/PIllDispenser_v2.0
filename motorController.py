@@ -166,8 +166,8 @@ while True:
         if now.hour == int(pill1_hour_list[x]) and now.minute == int(pill1_minute_list[x]):
             dutycycle = NOMINAL + (-1) * .5 * 20 / 10
             Servo1.ChangeDutyCycle(dutycycle)
-            sleep += pill1_numpills[x] * 1.5
-            time.sleep(pill1_numpills[x] * 1.5)
+            sleep += pill1_numpills[x] * 1.2
+            time.sleep(pill1_numpills[x] * 1.2)
             Servo1.ChangeDutyCycle(0)
             # Allows you to see it actually working
             print("Dispensing Pill")
@@ -178,8 +178,8 @@ while True:
         if now.hour == int(pill2_hour_list[x]) and now.minute == int(pill2_minute_list[x]):
             dutycycle = NOMINAL + (-1) * .5 * 20 / 10
             Servo2.ChangeDutyCycle(dutycycle)
-            sleep += pill1_numpills[x] * 1.5
-            time.sleep(pill1_numpills[x] * 1.5)
+            sleep += pill1_numpills[x] * 1.2
+            time.sleep(pill1_numpills[x] * 1.2)
             Servo2.ChangeDutyCycle(0)
             # Allows you to see it actually working
             print("Dispensing Pill")
@@ -190,8 +190,8 @@ while True:
         if now.hour == int(pill3_hour_list[x]) and now.minute == int(pill3_minute_list[x]):
             dutycycle = NOMINAL + (-1) * .5 * 20 / 10
             Servo3.ChangeDutyCycle(dutycycle)
-            sleep += pill1_numpills[x] * 1.5
-            time.sleep(pill1_numpills[x] * 1.5)
+            sleep += pill1_numpills[x] * 1.2
+            time.sleep(pill1_numpills[x] * 1.2)
             Servo3.ChangeDutyCycle(0)
             # Allows you to see it actually working
             print("Dispensing Pill")
@@ -202,8 +202,8 @@ while True:
         if now.hour == int(pill4_hour_list[x]) and now.minute == int(pill4_minute_list[x]):
             dutycycle = NOMINAL + (-1) * .5 * 20 / 10
             Servo4.ChangeDutyCycle(dutycycle)
-            sleep += pill1_numpills[x] * 1.5
-            time.sleep(pill1_numpills[x] * 1.5)
+            sleep += pill1_numpills[x] * 1.2
+            time.sleep(pill1_numpills[x] * 1.2)
             Servo4.ChangeDutyCycle(0)
             # Allows you to see it actually working
             print("Dispensing Pill")
@@ -214,8 +214,8 @@ while True:
         if now.hour == int(pill5_hour_list[x]) and now.minute == int(pill5_minute_list[x]):
             dutycycle = NOMINAL + (-1) * .5 * 20 / 10
             Servo5.ChangeDutyCycle(dutycycle)
-            sleep += pill1_numpills[x] * 1.5
-            time.sleep(pill1_numpills[x] * 1.5)
+            sleep += pill1_numpills[x] * 1.2
+            time.sleep(pill1_numpills[x] * 1.2)
             Servo5.ChangeDutyCycle(0)
             # Allows you to see it actually working
             print("Dispensing Pill")
@@ -226,8 +226,8 @@ while True:
         if now.hour == int(pill6_hour_list[x]) and now.minute == int(pill6_minute_list[x]):
             dutycycle = NOMINAL + (-1) * .5 * 20 / 10
             Servo6.ChangeDutyCycle(dutycycle)
-            sleep += pill1_numpills[x] * 1.5
-            time.sleep(pill1_numpills[x] * 1.5)
+            sleep += pill1_numpills[x] * 1.2
+            time.sleep(pill1_numpills[x] * 1.2)
             Servo6.ChangeDutyCycle(0)
             # Allows you to see it actually working
             print("Dispensing Pill")
