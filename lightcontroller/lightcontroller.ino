@@ -5,7 +5,7 @@
 
 #include <SoftwareSerial.h>
 
-#define NUMPIXELS 51
+#define NUMPIXELS 56
 #define PIN 8
 
 SoftwareSerial Bluetooth(10,9);
@@ -102,10 +102,12 @@ void loop() {
   }
   
   if (user == '1') {
-    rainbowCycle(50);
+    while(user == '1'){
+      rainbowCycle(50);
+    }
   }
   if (user == '2') {
-    while(user == '2') {
+    while(user =='2') {
       colorWipe(strip.Color(255, 0, 0), 50); // Red
       colorWipe(strip.Color(0, 255, 0), 50); // Green
       colorWipe(strip.Color(0, 0, 255), 50); // Blue

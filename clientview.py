@@ -51,18 +51,20 @@ def main():
     pill1 = page_soup.findAll("td", {"class": "pill1Time"})
     pill2 = page_soup.findAll("td", {"class": "pill2Time"})
     pill3 = page_soup.findAll("td", {"class": "pill3Time"})
-    pill1_name = page_soup.find("p", {"id": "pill1name"}).text
-    pill2_name = page_soup.find("p", {"id": "pill2name"}).text
-    pill3_name = page_soup.find("p", {"id": "pill3name"}).text
-    numpill1 = page_soup.findAll("td", {"class": "pill1num"})
-    numpill2 = page_soup.findAll("td", {"class": "pill2num"})
-    numpill3 = page_soup.findAll("td", {"class": "pill3num"})
     pill4 = page_soup.findAll("td", {"class": "pill4Time"})
     pill5 = page_soup.findAll("td", {"class": "pill5Time"})
     pill6 = page_soup.findAll("td", {"class": "pill6Time"})
+
+    pill1_name = page_soup.find("p", {"id": "pill1name"}).text
+    pill2_name = page_soup.find("p", {"id": "pill2name"}).text
+    pill3_name = page_soup.find("p", {"id": "pill3name"}).text
     pill4_name = page_soup.find("p", {"id": "pill4name"}).text
     pill5_name = page_soup.find("p", {"id": "pill5name"}).text
     pill6_name = page_soup.find("p", {"id": "pill6name"}).text
+
+    numpill1 = page_soup.findAll("td", {"class": "pill1num"})
+    numpill2 = page_soup.findAll("td", {"class": "pill2num"})
+    numpill3 = page_soup.findAll("td", {"class": "pill3num"})
     numpill4 = page_soup.findAll("td", {"class": "pill4num"})
     numpill5 = page_soup.findAll("td", {"class": "pill5num"})
     numpill6 = page_soup.findAll("td", {"class": "pill6num"})
