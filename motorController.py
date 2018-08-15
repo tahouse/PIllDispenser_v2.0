@@ -161,8 +161,8 @@ while True:
         # Compare the current hour to the hour in the list and the current minute to the minute in the list
         if now.hour == int(pill1_hour_list[x]) and now.minute == int(pill1_minute_list[x]):
             Servo1.ChangeDutyCycle(12)
-            sleep += pill1_numpills[x] * 1.3
-            time.sleep(pill1_numpills[x] * 1.3)
+            sleep += pill1_numpills[x] * .13
+            time.sleep(pill1_numpills[x] * .13)
             Servo1.ChangeDutyCycle(0)
             # Allows you to see it actually working
             print("Dispensing Pill")
