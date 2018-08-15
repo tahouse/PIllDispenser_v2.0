@@ -172,7 +172,7 @@ while True:
         # Compare the current hour to the hour in the list and the current minute to the minute in the list
         if now.hour == int(pill2_hour_list[x]) and now.minute == int(pill2_minute_list[x]):
             sleep += pill2_numpills[x] * 1.3
-            Servo2.ChangeDutyCycle(-2)
+            Servo2.ChangeDutyCycle(1)
             time.sleep(pill2_numpills[x] * 1.3)
             Servo2.ChangeDutyCycle(0)
             # Allows you to see it actually working
@@ -182,7 +182,7 @@ while True:
     for x in range(len(pill3_hour_list)):
         # Compare the current hour to the hour in the list and the current minute to the minute in the list
         if now.hour == int(pill3_hour_list[x]) and now.minute == int(pill3_minute_list[x]):
-            Servo3.ChangeDutyCycle(-2)
+            Servo3.ChangeDutyCycle(.9)
             sleep += pill3_numpills[x] * 1.3
             time.sleep(pill3_numpills[x] * 1.3)
             Servo3.ChangeDutyCycle(0)
@@ -193,7 +193,7 @@ while True:
     for x in range(len(pill4_hour_list)):
         # Compare the current hour to the hour in the list and the current minute to the minute in the list
         if now.hour == int(pill4_hour_list[x]) and now.minute == int(pill4_minute_list[x]):
-            Servo4.ChangeDutyCycle(-2)
+            Servo4.ChangeDutyCycle(-5)
             sleep += pill4_numpills[x] * 1.3
             time.sleep(pill4_numpills[x] * 1.3)
             Servo4.ChangeDutyCycle(0)
@@ -205,7 +205,7 @@ while True:
         # Compare the current hour to the hour in the list and the current minute to the minute in the list
         if now.hour == int(pill5_hour_list[x]) and now.minute == int(pill5_minute_list[x]):
             sleep += pill5_numpills[x] * 1.3
-            Servo5.ChangeDutyCycle(-2)
+            Servo5.ChangeDutyCycle(-7.4)
             time.sleep(pill5_numpills[x] * 1.3)
             Servo5.ChangeDutyCycle(0)
             # Allows you to see it actually working
@@ -215,7 +215,7 @@ while True:
     for x in range(len(pill6_hour_list)):
         # Compare the current hour to the hour in the list and the current minute to the minute in the list
         if now.hour == int(pill6_hour_list[x]) and now.minute == int(pill6_minute_list[x]):
-            Servo6.ChangeDutyCycle(-2)
+            Servo6.ChangeDutyCycle(-7.6)
             sleep += pill6_numpills[x] * 1.3
             time.sleep(pill6_numpills[x] * 1.3)
             Servo6.ChangeDutyCycle(0)
