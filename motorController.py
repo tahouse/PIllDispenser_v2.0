@@ -165,13 +165,14 @@ while True:
         # Compare the current hour to the hour in the list and the current minute to the minute in the list
         if now.hour == int(pill1_hour_list[x]) and now.minute == int(pill1_minute_list[x]):
             # loop first over "forward" ramp up/down, then reverse.
-            for direction in [+1.0, -1.0]:
-                # step from 0 to 100% then back to just above zero
-                # (next time round the loop will do the 0)
-                for step in list(range(STEPS + 1)) + list(range(STEPS - 1, 0, -1)):
-                    dutycycle = NOMINAL + direction * RANGE * step / STEPS
-                    Servo1.ChangeDutyCycle(dutycycle)
-                    time.sleep(1.3)
+            while True:
+                for direction in [+1.0, -1.0]:
+                    # step from 0 to 100% then back to just above zero
+                    # (next time round the loop will do the 0)
+                    for step in list(range(STEPS + 1)) + list(range(STEPS - 1, 0, -1)):
+                        dutycycle = NOMINAL + direction * RANGE * step / STEPS
+                        Servo1.ChangeDutyCycle(dutycycle)
+                        time.sleep(1.3)
             # Servo1.ChangeDutyCycle(.1)
             # sleep += pill1_numpills[x] * 1.3
             # time.sleep(pill1_numpills[x] * 1.3)
