@@ -1,4 +1,3 @@
-import bs4
 from bs4 import BeautifulSoup
 import RPi.GPIO as GPIO
 import requests
@@ -35,9 +34,9 @@ GPIO.setup(Servo6Pin, GPIO.OUT)
 Servo1 = GPIO.PWM(Servo1Pin, 50)
 Servo2 = GPIO.PWM(Servo2Pin, 50)
 Servo3 = GPIO.PWM(Servo3Pin, 50)
-Servo4 = GPIO.PWM(Servo1Pin, 50)
-Servo5 = GPIO.PWM(Servo2Pin, 50)
-Servo6 = GPIO.PWM(Servo3Pin, 50)
+Servo4 = GPIO.PWM(Servo4Pin, 50)
+Servo5 = GPIO.PWM(Servo5Pin, 50)
+Servo6 = GPIO.PWM(Servo6Pin, 50)
 
 # Turn everything off
 Servo1.start(0)
